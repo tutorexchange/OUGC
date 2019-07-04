@@ -1,0 +1,70 @@
+<head>
+    {% load static %}
+    <!-- Prism CSS -->
+    <link href="{% static "tinymce/css/prism.css" %}" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link href="{% static "main/materialize.css" %}" rel="stylesheet"> 
+    <!-- Compiled and minified JavaScript -->
+    <script src="{% static "main/materialize.min.js" %}"></script>
+</head>
+
+
+<body background="/media/nbg.jpg">
+
+  {% comment %} <nav>
+    <div class="nav-wrapper black lighten-5"
+      <a href="/" class="brand-logo">Tutorials</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        {% include 'main/includes/navbaritems.html' %}
+      </ul>
+    </div>
+    
+  </nav> {% endcomment %}
+
+  {% include 'main/includes/messaging.html' %}
+{% comment %} 
+        <!-- Page Layout here -->
+    <div class="row white">
+    <div class="col s12 offset-s0"> <div class="col s3 white lighten-1"><img src="{%static "main/logo1.png" %}"></div>{% include "main/includes/tabs.html"%}</div>
+    </div> {% endcomment %}
+<nav class="nav-extended transparent">
+    <div class="nav-wrapper transparent darken-1">
+      <a href="#" class="brand-logo ">OUGC</a>
+    </div>
+    <div class="nav-content">
+      <ul class="tabs tabs-transparent">
+        {% include "main/includes/tabs.html"%}
+      </ul>
+    </div>
+  </nav>
+
+     <div class="row white">
+      <div class="col s12 m4 l3 white"> <!-- Note that "m4 l3" was added -->
+      {% include "main/includes/leftnav.html"%}
+      <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+      </div>
+      <div class="col s12 m8 l9  white lighten-1"> <!-- Note that "m8 l9" was added -->
+        {% block content %}
+        {% endblock %}
+
+      </div>
+      </div>
+</body>
+
+<!-- Prism JS -->
+<script src="{% static "tinymce/js/prism.js" %}"></script>

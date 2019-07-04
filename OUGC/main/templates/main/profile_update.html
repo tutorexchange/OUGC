@@ -1,0 +1,32 @@
+{% extends 'main/header.html' %}
+{% load static %}
+{% block content %}
+<head>
+<title>Profile</title>
+{% if user.is_authenticated %}
+</head><body class="grey lighten-1"vlink="red" link="blue">
+        <div class="card-panel grey lighten-5 z-depth-1">
+          <div class="row valign-wrapper">
+            <div class="col s5">
+              <img src="{{ user.profile.image.url }}" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+            </div>
+            <div class="col s3">
+              <span class="black-text">
+                    Hello {{user.username|title}}
+              </span>
+            </div>
+          </div>
+          <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{p_form.as_p}}    
+        {{u_form.as_p}}
+        <button style="background-color:grey; color:white" class="btn btn-outline-info" type="submit">Update</button>
+    </form>
+        </div>
+      </div>
+
+            
+{% else %}
+    Not logged in 
+{% endif%}
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'main/header.html' %}
+{% load static %}
+{% block content %}
+<head>
+<title>Profile</title>
+{% if user.is_authenticated %}
+</head><body class="grey lighten-1"vlink="red" link="blue">
+        <div class="card-panel grey lighten-5 z-depth-1">
+          <div class="row valign-wrapper">
+            <div class="col s3">
+              <img src="{{ user.profile.image.url }}" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+            </div>
+            <div class="col s3">
+              <span class="black-text">
+                  <p>
+                  UserName :
+                  {{user.username|title}}
+                  </p>
+                  <p>
+                  Email : 
+                  {{user.email}}
+                  </p>
+              </span>
+            </div>
+         <a class="waves-effect black-text transparent waves-light btn-small" href="/profile_update"><i class="material-icons left"></i>update profile</a>
+
+          </div>
+        </div>
+      </div>
+
+            
+{% else %}
+    Not logged in 
+{% endif%}
+{% endblock %}

@@ -1,0 +1,21 @@
+<html>
+
+<head>
+<title>Otago Go Club</title>
+</head><body class=" lighten-1"vlink="red" link="blue">
+    Welcome to Otago University Go club
+    <br>
+    {% for tut in news %}
+        <div class="col s12 m6">
+          <div class="card grey darken-1 hoverable">
+            <div class="card-content white-text">
+              <span class="card-title">{{tut.news_title}}</span>
+              <p style="font-size:70%">Published {{tut.news_published}}</p>
+              <p>{{tut.news_content|safe}}</p>
+            </div>
+          </div>
+        </div>
+    {% endfor %} 
+<p>
+
+</p></body></html>
