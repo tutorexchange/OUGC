@@ -6,10 +6,11 @@ from PIL import Image
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default='default.jpg',upload_to="profile_pics")
+    rank = models.CharField(max_length=20,default="21kyu")
+    
     def __str__(self):
         return f"{self.user.username} 's Profile"
-
-    def save(self):
+    def save(self,*args, **kwargs):
         super().save()
         img = Image.open(self.image.path)
         if img.height > 300 or img.width >300:

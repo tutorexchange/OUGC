@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .models import News,Tournament
+from .models import News,Tournament,Profile
 from django.contrib import messages
 from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -16,10 +16,28 @@ def tournaments(request):
     return render(request=request,
                 template_name="main/tournaments.html",
                 context = {"tournaments":Tournament.objects.all})
-
+def rankings(request):
+    return render(request=request,
+                    template_name="main/rankings.html",
+                        context = {"profiles":Profile.objects.all})
+def gallery(request):
+    return render(request=request,
+                    template_name="main/gallery.html")
 def profile(request):
     return render(request=request,
                 template_name="main/profile.html")
+def history(request):
+    return render(request=request,
+                  template_name="main/history.html")
+def donate(request):
+    return render(request=request,
+                 template_name="main/donate.html")
+def contact(request):
+    return render(request=request,
+                    template_name="main/contact.html")
+def learn(request):
+    return render(request=request,
+                  template_name="main/learn.html")
 def profile_update(request):
     if request.method=='POST':
         u_form = UserUpdateForm(request.POST,instance=request.user)

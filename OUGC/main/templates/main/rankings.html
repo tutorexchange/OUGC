@@ -1,0 +1,19 @@
+{% extends 'main/header.html' %}
+{% load static %}
+{% block content %}
+        <table style="width:100%">
+        <tr>
+        <th>Name</th>
+        <th>rank</th>
+        </tr>
+         {% for p in profiles %}
+         {% if not p.user.is_superuser %}
+         <tr>
+              <th>{{p.user.username}}</th>
+              <th>{{p.rank}}</th>
+        </tr>
+        {% endif %}
+    {% endfor %} 
+    </table>
+       
+{% endblock %}
