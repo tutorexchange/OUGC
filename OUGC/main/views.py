@@ -105,4 +105,4 @@ def login_request(request):
                     context={"form":form})
 def play(request):
     return render(request = request,
-                  template_name='Go-Game/index.html')
+                  template_name="main/play.html")

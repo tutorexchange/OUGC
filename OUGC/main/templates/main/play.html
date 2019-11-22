@@ -1,0 +1,111 @@
+{% extends 'main/header.html' %}
+{% load static %}
+{% block content %}    
+<div class="container">
+    <!-- Dropdown menu for selecting tool -->
+    <select id="tool" style="display: block; margin-bottom: 10px;">
+      <option value="black" selected>Black stone</option>
+      <option value="white">White stone</option>
+      <option value="remove">Remove</option>
+    </select>
+    <div id="board" >
+      <!-- board will go here -->
+    </div>
+</div>
+<script>
+
+var board = new WGo.Board(document.getElementById("board"), {
+    width: 500,
+   section: {
+        top: -0.5,
+        left: -0.5,
+        right: -0.5,
+        bottom: -0.5
+    },
+    background:'{% static 'wood1.jpg' %}'
+});
+prevx = 0;
+prevy = 0;
+boardwidth = 600;
+var tool = document.getElementById("tool"); // get the <select> element
+board.addEventListener("mousemove",function(x,y){
+    board.removeObject({
+        x:prevx,
+        y:prevy,
+        type: "CR"
+    });
+    board.addObject({
+            x: x,
+            y: y,
+            type: "CR"
+    });
+
+    if(x!=-1 && y!=-1){
+        prevx = x;
+        prevy = y;
+    }
+});
+
+board.addEventListener("click", function(x, y) {
+    if(tool.value == "black") {
+        board.addObject({
+            x: x,
+            y: y,
+            c: WGo.B
+        });
+    }
+    else if(tool.value == "white") {
+        board.addObject({
+            x: x,
+            y: y,
+            c: WGo.W
+        });
+    }
+    else if(tool.value == "remove") {
+        board.removeObjectsAt(x, y);
+    }
+    else {
+        board.addObject({
+            x: x,
+            y: y,
+            type: tool.value
+        });
+    }
+    
+});
+var coordinates = {
+    // draw on grid layer
+    grid: {
+        draw: function(args, board) {
+            var ch, t, xright, xleft, ytop, ybottom;
+            
+            this.fillStyle = "rgba(0,0,0,0.7)";
+            this.textBaseline="middle";
+            this.textAlign="center";
+            this.font = board.stoneRadius+"px "+(board.font || "");
+            
+            xright = board.getX(-0.75);
+            xleft = board.getX(board.size-0.25);
+            ytop = board.getY(-0.75);
+            ybottom = board.getY(board.size-0.25);
+            
+            for(var i = 0; i < board.size; i++) {
+                ch = i+"A".charCodeAt(0);
+                if(ch >= "I".charCodeAt(0)) ch++;
+                
+                t = board.getY(i);
+                this.fillText(board.size-i, xright, t);
+                this.fillText(board.size-i, xleft, t);
+                
+                t = board.getX(i);
+                this.fillText(String.fromCharCode(ch), t, ytop);
+                this.fillText(String.fromCharCode(ch), t, ybottom);
+            }
+            
+            this.fillStyle = "black";
+		}
+    }
+}
+board.addCustomObject(coordinates);
+</script>
+{% endblock %}

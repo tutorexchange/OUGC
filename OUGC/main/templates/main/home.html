@@ -1,26 +1,39 @@
 {% extends 'main/header.html' %}
 {% load static %}
 {% block content %}
-    
-   
-       <html>
-<head>
-<title>Otago Go Club</title>
-</head><body class="grey lighten-1"vlink="red" link="blue">
-    Welcome to Otago University Go club
-    <br>
-    {% for tut in news %}
-        <div class="col s12 m6">
-          <div class="card blue-grey darken-1 hoverable">
-            <div class="card-content white-text">
+
+<center>
+<h4>News</h4>
+<div class="carousel carousel-slider center" >
+{% for tut in news %}
+<a class="carousel-item" id="{{forloop.counter}}" href="#one!">
+    <div class="card hoverable cardbox">
+      <div class="card-content white-text ">
               <span class="card-title">{{tut.news_title}}</span>
               <p style="font-size:70%">Published {{tut.news_published}}</p>
               <p>{{tut.news_content|safe}}</p>
             </div>
           </div>
-        </div>
+          </a>
     {% endfor %} 
-<p>
+</div>
+</center>
 
-</p></body></html>
+<script>
+  var options ={duration:500,dist:-300,indicators:true}
+  var elems = document.querySelectorAll('.carousel');
+  document.addEventListener('DOMContentLoaded', function() {
+    var instances = M.Carousel.init(elems, options);
+  });
+  setInterval(
+    function(){ 
+      var instance = M.Carousel.getInstance(elems[0]);
+      instance.prev();      
+  }, 8000);
+window.onresize = recenter;
+function recenter(){
+  var instances = M.Carousel.init(elems, options);
+}
+
+  </script>      
 {% endblock %}

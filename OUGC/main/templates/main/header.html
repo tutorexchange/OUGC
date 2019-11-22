@@ -4,12 +4,53 @@
     <link href="{% static "tinymce/css/prism.css" %}" rel="stylesheet">
     <!-- Compiled and minified CSS -->
     <link href="{% static "main/materialize.css" %}" rel="stylesheet"> 
+    <script type="text/javascript" src="{% static "main/wgo.min.js" %}"></script> <!-- linking WGo javascript -->
+    <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
     <!-- Compiled and minified JavaScript -->
     <script src="{% static "main/materialize.min.js" %}"></script>
+
 </head>
+<style>
+nav{
+    font-family: 'Bebas Neue';font-size: 22px;
+}
+li.tab:hover{
+   border-bottom:black solid 1px;
+  background:rgba(0,0,0,0.1)  
+}
+li.tab:active{
+     border-bottom:black solid 1px;
+     background-color:rgba(0,0,0,1)  
+}
+nav ul {
+    text-align: center;
+}
+nav ul li {
+    display: inline;
+    float: none;
+}
+nav ul li a {
+    display: inline-block;
+}
+h4{
+   text-shadow: 3px 2px rgba(0,0,0,0.1);
+}
+.listing{
 
+}
+.listing:hover{
+  border-bottom:black solid 1px;  
+}
+.cardbox{
+  background:rgba(0,0,0,0.8);
+  width:80%;
+  margin:auto;
+  height:100%;
+}
 
-<body background="{% static 'main/pics/nbg.jpg' %}">
+</style>
+
+<body class="container" background="{% static 'download.jpg' %}" >
 
   {% comment %} <nav>
     <div class="nav-wrapper black lighten-5"
@@ -27,44 +68,49 @@
     <div class="row white">
     <div class="col s12 offset-s0"> <div class="col s3 white lighten-1"><img src="{%static "main/logo1.png" %}"></div>{% include "main/includes/tabs.html"%}</div>
     </div> {% endcomment %}
-<nav class="nav-extended transparent">
-    <div class="nav-wrapper transparent darken-1">
-      <a href="#" class="brand-logo ">OUGC</a>
+<nav class="nav-extended" style="background:rgba(255,255,255,0.95)">
+    <div class="nav-wrapper darken-1">    
+      <a href="#" class="brand-logo center" style="color:black;backgruond:transparent">
+      <img src="{%static "main/logo1.png" %}">
+      </a>      
     </div>
-    <div class="nav-content">
-      <ul class="tabs tabs-transparent">
+    <div class="nav-content-center"style="border-bottom:black solid 1px">
+      <ul class="tabs tabs-white" >
         {% include "main/includes/tabs.html"%}
       </ul>
     </div>
   </nav>
-
-     <div class="row white">
-      <div class="col s12 m4 l3 white"> <!-- Note that "m4 l3" was added -->
-      {% include "main/includes/leftnav.html"%}
-      <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-      </div>
-      <div class="col s12 m8 l9  white lighten-1"> <!-- Note that "m8 l9" was added -->
+    <div style="background:rgba(255,255,255,0.95)"> <!-- Note that "m8 l9" was added -->
+     <hr>
         {% block content %}
         {% endblock %}
-
-      </div>
       </div>
 </body>
+<footer>
+<div class="row" style="background:white">
+<div class="col s12 m6">
+<center>
+<h4>About the club</h4>
+<a href="/gallery" target="Frame2" class="black-text listing"><b>Gallery</b></a> <br>
+<a href="/contact" target="Frame2" class="black-text listing"><b>Contact</b></a> <br>
+<a href="/donate" target="Frame2" class="black-text listing"><b>Donate</b></a> <br>
+</center>
+</div>
+<hr>
+<div class="col s12 m6">
+<center>
+<h4>Join the Club</h4>
+{% if user.is_authenticated %}
+<a href="/profile" target="Frame2" class="black-text listing"><b>My Profile</b></a><br>
+{% else %}
+<a href="/register" target="Frame2" class="black-text listing"><b>Register as a member</b></a><br>
+{% endif %}
 
+<a href="/tournaments" target="Frame2" class="black-text listing"><b>2019 Tournaments</b></a> <br>
+<a href="/rankings" target="Frame2" class="black-text listing"><b>Browse Rankings</b></a> <br>
+</center>
+</div>
+</div>
+</footer>
 <!-- Prism JS -->
 <script src="{% static "tinymce/js/prism.js" %}"></script>

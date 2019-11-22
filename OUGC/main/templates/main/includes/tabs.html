@@ -1,15 +1,15 @@
 
 {% if user.is_authenticated %}
-        <li class="tab "><a class="active"href="/home">Home</a></li>
-        <li class="tab"><a class="active"href="/profile">{{user.username|title}}</a></li>
-        <li class="tab"><a class = "active"href="/logout">logout</a></li>
-        <li class="tab"><a class= "active"href="/learn">learn Go</a></li>
-        <li class="tab"><a class= "active"href="#test4">Play Go</a></li>
+        <li class="tab "><a class="active"href="/home" style="color:black">Home</a></li>
+        <li class="tab"><a class="active"href="/profile" style="color:black">{{user.username|title}}</a></li>
+        <li class="tab"><a class = "active"href="/logout" style="color:black">logout</a></li>
+        <li class="tab"><a class= "active"href="/learn" style="color:black">learn Go</a></li>
+        <li class="tab"><a class= "active"href="/play" style="color:black;border:none">Play Go</a></li>
 
 {% else %}
-        <li class="tab"><a class="active"href="/home">Home</a></li>
-        <li class="tab"><a class="active" href="/login">Login</a></li>
-        <li class="tab"><a class= "active"href="/register">Register</a></li>
-        <li class="tab"><a class= "active"href="/learn">Learn Go </a></li>
-        <li class="tab"><a class= "active"href="#test4">Play Go</a></li>
+        <li class="tab"><a class="active"href="/home" style="color:black">Home</a></li>
+        <li class="tab"><a class="active" href="/login" style="color:black">Login</a></li>
+        <li class="tab"><a class= "active"href="/register" style="color:black">Register</a></li>
+        <li class="tab"><a class= "active"href="/learn" style="color:black">Learn Go </a></li>
+        <li class="tab" ><a class= "active"href="/play" style="color:black">Play Go</a></li>
 {% endif %}
